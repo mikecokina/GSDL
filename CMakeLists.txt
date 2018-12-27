@@ -7,5 +7,5 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(GSDL main.cpp Game.h Game.cpp)
+add_executable(GSDL src/main.cpp src/Game.h src/Game.cpp)
 target_link_libraries(GSDL ${SDL2_LIBRARIES})
