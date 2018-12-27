@@ -4,6 +4,8 @@
 
 #include "Game.h"
 
+SDL_Texture *shipTexture = nullptr;
+
 
 Game::Game() {
 
@@ -34,6 +36,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         setIsNotRunning();
     }
 
+    SDL_Surface *tmpSurface = IMG_Load("/home/mike/CLionProjects/GSDL/data/img/ship.png");
+    shipTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+    SDL_FreeSurface(tmpSurface);
 
 }
 
@@ -57,6 +62,9 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, shipTexture, nullptr, nullptr);
+
+
     // add render stuff
     SDL_RenderPresent(renderer);
 }
