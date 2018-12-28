@@ -4,9 +4,11 @@
 
 #include "Game.h"
 #include "TextureManager.h"
+#include "GameObject.h"
 
-SDL_Texture *shipTexture;
-SDL_Rect srcRect, destRect;
+GameObject *player;
+GameObject *player5;
+
 Uint32 counter = 0;
 
 
@@ -34,8 +36,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     } else {
         setIsNotRunning();
     }
+    player = new GameObject("../data/img/ship.min.png", renderer, 0, 0);
+    player5 = new GameObject("../data/img/ship5.min.png", renderer, 150, 150);
 
-    shipTexture = TextureManager::LoadTexture("../data/img/ship.png", renderer);
 }
 
 void Game::handleEvents() {
@@ -54,16 +57,16 @@ void Game::handleEvents() {
 
 void Game::update() {
     counter++;
-    destRect.h = 128; destRect.w = 128;
-    destRect.x = counter;
-
+    player->Update();
+    player5->Update();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
 
     // add render stuff
-    SDL_RenderCopy(renderer, shipTexture, nullptr, &destRect);
+    player->Render();
+    player5->Render();
 
 
     SDL_RenderPresent(renderer);
