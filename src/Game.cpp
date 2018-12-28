@@ -5,9 +5,11 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "Map.h"
 
 GameObject *player;
 GameObject *player5;
+Map *map;
 
 SDL_Renderer *Game::renderer = nullptr;
 
@@ -40,7 +42,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     }
     player = new GameObject("../data/img/ship.min.png", 0, 0);
     player5 = new GameObject("../data/img/ship5.min.png", 150, 150);
-
+    map = new Map();
 }
 
 void Game::handleEvents() {
@@ -67,6 +69,7 @@ void Game::render() {
     SDL_RenderClear(renderer);
 
     // add render stuff
+    map->DrawMap();
     player->Render();
     player5->Render();
 
