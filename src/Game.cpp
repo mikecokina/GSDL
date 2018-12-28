@@ -4,7 +4,12 @@
 
 #include "Game.h"
 
+#include <thread>
+#include <chrono>
+
 SDL_Texture *shipTexture = nullptr;
+SDL_Rect srcRect, destRect;
+Uint32 counter = 0;
 
 
 Game::Game() {
@@ -57,15 +62,20 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+    counter++;
+    destRect.h = 128; destRect.w = 128;
+    destRect.x = counter;
+    std::this_thread::sleep_for (std::chrono::milliseconds(10));
 
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, shipTexture, nullptr, nullptr);
-
 
     // add render stuff
+    SDL_RenderCopy(renderer, shipTexture, nullptr, &destRect);
+
+
     SDL_RenderPresent(renderer);
 }
 
