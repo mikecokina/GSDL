@@ -17,9 +17,11 @@ include_directories(
 
 add_executable(
         GSDL
-        src/main.cpp src/Game.h
+        src/main.cpp
+        src/Game.h
         src/Game.cpp
-)
+        src/TextureManager.h
+        src/Texturemanager.cpp)
 
 target_link_libraries(
         GSDL

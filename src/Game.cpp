@@ -3,20 +3,16 @@
 //
 
 #include "Game.h"
+#include "TextureManager.h"
 
-
-SDL_Texture *shipTexture = nullptr;
+SDL_Texture *shipTexture;
 SDL_Rect srcRect, destRect;
 Uint32 counter = 0;
 
 
-Game::Game() {
+Game::Game() = default;
 
-}
-
-Game::~Game() {
-
-}
+Game::~Game() = default;
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
     Uint32 sdl_window_flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
@@ -39,10 +35,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         setIsNotRunning();
     }
 
-    SDL_Surface *tmpSurface = IMG_Load("/home/mike/CLionProjects/GSDL/data/img/ship.png");
-    shipTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-    SDL_FreeSurface(tmpSurface);
-
+    shipTexture = TextureManager::LoadTexture("../data/img/ship.png", renderer);
 }
 
 void Game::handleEvents() {
