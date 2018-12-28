@@ -4,8 +4,6 @@
 
 #include "Game.h"
 
-#include <thread>
-#include <chrono>
 
 SDL_Texture *shipTexture = nullptr;
 SDL_Rect srcRect, destRect;
@@ -65,7 +63,6 @@ void Game::update() {
     counter++;
     destRect.h = 128; destRect.w = 128;
     destRect.x = counter;
-    std::this_thread::sleep_for (std::chrono::milliseconds(10));
 
 }
 
