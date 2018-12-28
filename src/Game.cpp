@@ -9,6 +9,8 @@
 GameObject *player;
 GameObject *player5;
 
+SDL_Renderer *Game::renderer = nullptr;
+
 Uint32 counter = 0;
 
 
@@ -36,8 +38,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     } else {
         setIsNotRunning();
     }
-    player = new GameObject("../data/img/ship.min.png", renderer, 0, 0);
-    player5 = new GameObject("../data/img/ship5.min.png", renderer, 150, 150);
+    player = new GameObject("../data/img/ship.min.png", 0, 0);
+    player5 = new GameObject("../data/img/ship5.min.png", 150, 150);
 
 }
 
