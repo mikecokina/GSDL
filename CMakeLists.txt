@@ -21,7 +21,7 @@ add_executable(
         src/Game.h
         src/Game.cpp
         src/TextureManager.h
-        src/Texturemanager.cpp src/GameObject.h src/GameObject.cpp src/Map.h src/Map.cpp)
+        src/Texturemanager.cpp src/GameObject.h src/GameObject.cpp src/Map.h src/Map.cpp src/EntityComponentSys.h src/Components.h)
 
 target_link_libraries(
         GSDL

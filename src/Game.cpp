@@ -6,12 +6,18 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "Map.h"
+#include "EntityComponentSys.h"
+#include "Components.h"
 
 GameObject *player;
 GameObject *player5;
 Map *map;
 
 SDL_Renderer *Game::renderer = nullptr;
+Manager manager;
+auto& newPlayer(manager.addEntity());
+
+
 
 Uint32 counter = 0;
 
@@ -43,6 +49,10 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     player = new GameObject("../data/img/ship.min.png", 0, 0);
     player5 = new GameObject("../data/img/ship5.min.png", 150, 150);
     map = new Map();
+
+    newPlayer.addComponent<PositionComponent>();
+    newPlayer.getComponent<PositionComponent>().setPos(500, 500);
+
 }
 
 void Game::handleEvents() {
@@ -63,6 +73,9 @@ void Game::update() {
     counter++;
     player->Update();
     player5->Update();
+    manager.update();
+    std::cout << newPlayer.getComponent<PositionComponent>().x() << "," <<
+    newPlayer.getComponent<PositionComponent>().y() << std::endl;
 }
 
 void Game::render() {
